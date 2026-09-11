@@ -8,10 +8,12 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'missing fields' }) };
   }
 
+  const apiKey = process.env.RESEND_API_KEY;
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer re_axn4d1JQ_dViJ6BTvy9Z9d3G5HUEv9yhT',
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
